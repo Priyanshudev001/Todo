@@ -101,6 +101,20 @@ class Practice extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+
+          BottomNavigationBarItem(icon: Icon(Icons.nightlight), label: "Night"),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        shape: CircleBorder(),
+        backgroundColor: (Colors.green),
+        onPressed: () {},
+        child: Icon(Icons.add, color: Colors.white),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
