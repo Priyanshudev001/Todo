@@ -102,8 +102,14 @@ class Practice extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.amber,
+
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+            backgroundColor: Colors.red,
+          ),
 
           BottomNavigationBarItem(icon: Icon(Icons.nightlight), label: "Night"),
         ],
