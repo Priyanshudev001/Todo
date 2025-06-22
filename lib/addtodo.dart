@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:todo/datastore.dart';
 
 class Addtodo extends StatefulWidget {
   const Addtodo({super.key});
@@ -24,7 +25,7 @@ class _AddtodoState extends State<Addtodo> {
         title: Column(
           children: [
             Text(
-              "Yatri",
+              "Yatri form",
 
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -64,7 +65,12 @@ class _AddtodoState extends State<Addtodo> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (formkey.currentState?.validate() == true) {
-                      log('j');
+                      log(title.text.toString());
+                      log(description.text.toString());
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Datastore()),
+                      );
                     }
                   },
                   child: Text("Submit"),
