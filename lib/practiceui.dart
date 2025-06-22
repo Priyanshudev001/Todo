@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/addtodo.dart';
 
 class Practice extends StatelessWidget {
   const Practice({super.key});
@@ -16,6 +17,7 @@ class Practice extends StatelessWidget {
       "Mother name",
     ];
     return Scaffold(
+      backgroundColor: Colors.greenAccent,
       appBar: AppBar(
         leading: Icon(Icons.grid_view_rounded),
         title: Text(
@@ -26,6 +28,7 @@ class Practice extends StatelessWidget {
         centerTitle: true,
         actions: [Icon(Icons.search)],
       ),
+
       body: Center(
         child: Column(
           children: [
@@ -33,7 +36,11 @@ class Practice extends StatelessWidget {
               padding: const EdgeInsets.all(30),
               child: Text(
                 "What's on your mind ?",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
               ),
             ),
 
@@ -75,7 +82,7 @@ class Practice extends StatelessWidget {
             // ),
             Expanded(
               child: ListView.builder(
-                //ListVie => scrollable garxa ra dekahunxa list ma bhako kura
+                //ListView => scrollable garxa ra dekahunxa list ma bhako kura
                 itemCount: lyrics.length,
                 itemBuilder: (context, index) {
                   return Padding(
@@ -87,7 +94,7 @@ class Practice extends StatelessWidget {
                       margin: EdgeInsets.symmetric(horizontal: 30),
 
                       decoration: BoxDecoration(
-                        color: Colors.greenAccent,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
                       ),
 
@@ -115,13 +122,9 @@ class Practice extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
         selectedItemColor: const Color.fromARGB(255, 0, 0, 0),
-
+        unselectedItemColor: const Color.fromARGB(255, 3, 4, 1),
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-            backgroundColor: Colors.red,
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
 
           BottomNavigationBarItem(icon: Icon(Icons.nightlight), label: "Night"),
         ],
@@ -129,9 +132,15 @@ class Practice extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
         backgroundColor: (Colors.green),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Addtodo()),
+          );
+        },
         child: Icon(Icons.add, color: Colors.white),
       ),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
