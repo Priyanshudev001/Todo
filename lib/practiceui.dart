@@ -5,7 +5,16 @@ class Practice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> lyrics = ["Name", "Address", "Number", "Age", "Sex"];
+    final List<String> lyrics = [
+      "Name",
+      "Address",
+      "Number",
+      "Age",
+      "Sex",
+      "Citizenship number",
+      "Father name",
+      "Mother name",
+    ];
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.grid_view_rounded),
@@ -66,6 +75,7 @@ class Practice extends StatelessWidget {
             // ),
             Expanded(
               child: ListView.builder(
+                //ListVie => scrollable garxa ra dekahunxa list ma bhako kura
                 itemCount: lyrics.length,
                 itemBuilder: (context, index) {
                   return Padding(
@@ -103,7 +113,8 @@ class Practice extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.amber,
+        backgroundColor: Colors.green,
+        selectedItemColor: const Color.fromARGB(255, 0, 0, 0),
 
         items: [
           BottomNavigationBarItem(
