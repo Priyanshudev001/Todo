@@ -5,6 +5,7 @@ class Practice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> lyrics = ["Name", "Address", "Number", "Age", "Sex"];
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.grid_view_rounded),
@@ -65,7 +66,7 @@ class Practice extends StatelessWidget {
             // ),
             Expanded(
               child: ListView.builder(
-                itemCount: 30,
+                itemCount: lyrics.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -86,7 +87,7 @@ class Practice extends StatelessWidget {
                           Row(
                             children: [
                               Icon(Icons.check_box),
-                              Text("Pay Priyanshu"),
+                              Text(lyrics[index]),
                             ],
                           ),
 
