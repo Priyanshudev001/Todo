@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:todo/datastore.dart';
 
@@ -11,75 +10,110 @@ class Addtodo extends StatefulWidget {
 }
 
 class _AddtodoState extends State<Addtodo> {
+  // Key used to validate the form inputs
   final formkey = GlobalKey<FormState>();
+
+  // Controllers to get text input from user
   final title = TextEditingController();
   final description = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 201, 221, 211),
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        // leading: Icon(Icons.grid_view_rounded, color: Colors.white),
-        centerTitle: true,
-        title: Column(
-          children: [
-            Text(
-              "Yatri form",
+      // Set a light background color for the screen
+      backgroundColor: const Color(0xFFE9F5F2),
 
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-                color: Colors.black,
-              ),
-            ),
-          ],
+      // Top AppBar with title
+      appBar: AppBar(
+        backgroundColor: Colors.green.shade700, // Set app bar color
+        elevation: 2,
+        centerTitle: true,
+        title: const Text(
+          "Yatri Form", // Title shown in the app bar
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            color: Colors.white,
+          ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+
+      // Form UI inside scrollable view
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
         child: Form(
-          key: formkey,
+          key: formkey, // Attach the form key to this form
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Instruction text
+              const Text(
+                "Enter your todo details below:",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              const SizedBox(height: 20), // Spacing
+              // Title input field
               TextFormField(
-                controller: title,
-                decoration: InputDecoration(label: Text('Title')),
+                controller: title, // Connect input with controller
+                decoration: const InputDecoration(
+                  labelText: 'Title',
+                  border: OutlineInputBorder(), // Show box border
+                  prefixIcon: Icon(Icons.title),
+                ),
+                // Validator ensures title is not empty
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Title is required";
+                  if (value == null || value.trim().isEmpty) {
+                    return "Title is required"; // Error shown if empty
                   }
-                  return null;
+                  return null; // No error
                 },
               ),
+              const SizedBox(height: 16), // Spacing
+              // Description input field
               TextFormField(
                 controller: description,
-                maxLines: 3,
-                decoration: InputDecoration(label: Text("description")),
+                maxLines: 4, // Allows multiple lines of text
+                decoration: const InputDecoration(
+                  labelText: 'Description',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.description),
+                ),
               ),
+              const SizedBox(height: 24),
 
-              SizedBox(height: 12),
+              // Submit button
               SizedBox(
-                height: 50,
                 width: double.infinity,
-                child: ElevatedButton(
+                height: 50,
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green.shade700, // Button color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8), // Rounded corners
+                    ),
+                  ),
+                  // When the button is pressed
                   onPressed: () {
+                    // Check if form is valid using validator
                     if (formkey.currentState?.validate() == true) {
-                      // log(title.text.toString());
-                      // log(description.text.toString());
+                      // Print values to debug console
+                      log("Title: ${title.text}");
+                      log("Description: ${description.text}");
+
+                      // Navigate to the next page (Datastore screen)
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder:
-                              (context) => Datastore(
-                                title: title.text,
-                                description: description.text,
-                              ),
+                          builder: (context) =>  Datastore(title: title.text,description: description.text,),
                         ),
                       );
                     }
                   },
-                  child: Text("Submit"),
+                  icon: const Icon(Icons.send, color: Colors.white),
+                  label: const Text(
+                    "Submit",
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
                 ),
               ),
             ],
