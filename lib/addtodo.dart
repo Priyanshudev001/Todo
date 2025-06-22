@@ -65,11 +65,17 @@ class _AddtodoState extends State<Addtodo> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (formkey.currentState?.validate() == true) {
-                      log(title.text.toString());
-                      log(description.text.toString());
+                      // log(title.text.toString());
+                      // log(description.text.toString());
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Datastore()),
+                        MaterialPageRoute(
+                          builder:
+                              (context) => Datastore(
+                                title: title.text,
+                                description: description.text,
+                              ),
+                        ),
                       );
                     }
                   },

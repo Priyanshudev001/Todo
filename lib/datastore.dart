@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 class Datastore extends StatelessWidget {
-
-  const Datastore({super.key});
+  final String title;
+  final String? description;
+  const Datastore({super.key, required this.title, this.description}); //screen ma halna lai bhada 
 
   @override
   Widget build(BuildContext context) {
+    log("title is $title");  // terminal ma herna  lai title ra decription
+    log(description ?? "no"); // ?? descr bahyena bhaney no hunxa
     return Scaffold(
       appBar: AppBar(title: Text('data'), backgroundColor: Colors.amber),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
           padding: EdgeInsets.all(20),
-          height: 70,
+          height: 100,
           width: double.infinity,
           margin: EdgeInsets.symmetric(horizontal: 30),
 
@@ -27,9 +31,18 @@ class Datastore extends StatelessWidget {
               Row(
                 children: [
                   Icon(Icons.check_box),
-                  Text(
-                    'gff',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+
+                  Column(
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                      Text(
+                        description ?? "no desc",
+                        style: TextStyle(fontSize: 14, color: Colors.white),
+                      ),
+                    ],
                   ),
                 ],
               ),
